@@ -546,17 +546,80 @@ class PhotoController extends Controller
             $wmarkHeight            = $watermark->height();
             $imgHeight              = $SingleImage->height();
             $imgWidth               = $SingleImage->width();
+            // $x                      = 20;
+            // $y                      = 10;
+            // while ($x < $imgWidth) {
+            //     $y = 10;
+            //     while($y < $imgHeight) {
+            //         $SingleImage->insert($watermark, 'top-left', $x, $y);
+            //         $y += $wmarkHeight+70;
+            //     }
+            //     $x += $wmarkWidth+70;
+            // }
+            // $SingleImage->save($pathOfWatermarkImage, 80); //for single image
+
+            //
+
+             if($imgWidth > $imgHeight)
+            {
+            // dd('panorama');
             $x                      = 20;
-            $y                      = 10;
+            $xx                     = 40;
+            $y                      = 20;
+
             while ($x < $imgWidth) {
-                $y = 10;
+                $y = 20;
+                $xx = $x;
+                $line = 1;
                 while($y < $imgHeight) {
-                    $SingleImage->insert($watermark, 'top-left', $x, $y);
-                    $y += $wmarkHeight+70;
+                    if($line%2 == 0) {
+                        $xx = $x+150;
+                    }
+                    $SingleImage->insert($watermark, 'top-left', $xx, $y);
+                    $y += $wmarkHeight+100;
+                    $xx = $x;
+
+                    $line += 1;
                 }
-                $x += $wmarkWidth+70;
+
+                  $x += $wmarkWidth+150;
+
             }
+
             $SingleImage->save($pathOfWatermarkImage, 80); //for single image
+            }
+            else
+            {
+                //for normal images
+                $x                      = 20;
+                $xx                     = 40;
+                $y                      = 20;
+
+                while ($x < $imgWidth) {
+                    $y = 20;
+                    $xx = $x;
+                    $line = 1;
+                    while($y < $imgHeight) {
+                        if($line%2 == 0) {
+                            $xx = $x+150;
+                        }
+                        $SingleImage->insert($watermark, 'top-left', $xx, $y);
+                        $y += $wmarkHeight+100;
+                        $xx = $x;
+
+                        $line += 1;
+                    }
+
+                      $x += $wmarkWidth+150;
+
+                }
+
+                $SingleImage->save($pathOfWatermarkImage, 80); //for single image
+            //
+            }
+
+
+            //
 
 
 

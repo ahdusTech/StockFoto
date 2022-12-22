@@ -20,6 +20,13 @@ class CreateSubCategoriesTable extends Migration
             $table->string('image_singlePage')->nullable();
             $table->string('image_title')->nullable();
             $table->string('image_price')->nullable();
+            $table->integer('sort')->nullable();
+            $table->string('status')->nullable();
+            $table->string('dpiImage')->nullable();
+            $table->string('originalImage')->nullable();
+            $table->integer('height')->nullable();
+            $table->integer('width')->nullable();
+
 
             $table->unsignedBigInteger('category_id');
 
